@@ -198,3 +198,14 @@ body {
   padding-right: 5rem;
   background: #ececec;
 }
+
+.credit-card {
+  width: 480px;
+  height: 300px;
+  border: 1px solid #069cd8;
+  color: white;
+  background-color: #069cd8;
+  border-radius: 15px;
+  padding: 30px 40px 30px 40px;
+  box-shadow: 2px 4px #a7a7a7;
+}

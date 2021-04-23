@@ -1,4 +1,7 @@
 import { Form, Card, Input, Row, Col } from "antd";
+import { CardLogo } from "../components/card-details-1";
+import { CardNumber } from "../components/card-details-2";
+import { CardHolderName } from "../components/card-details-3";
 
 export default function Home() {
   function onFinishFailed(errorInfo) {
@@ -8,11 +11,18 @@ export default function Home() {
     console.log("value", value);
   }
 
+  const testing = "YOOO";
+
   return (
     <div className="site-card-border-less-wrapper">
       <Row gutter={12}>
         <Col span={12}>
-          <Card title="Card Image" bordered={false} style={{ width: 500 }}>
+          <div className="credit-card">
+            <CardLogo />
+            <CardNumber />
+            <CardHolderName />
+          </div>
+          <Card bordered style={{ width: 500 }}>
             <Form
               layout="vertical"
               name="basic"
@@ -72,7 +82,7 @@ export default function Home() {
           </Card>
         </Col>
         <Col span={12}>
-          <Card title="Card Input" bordered={false} style={{ width: 500 }}>
+          <Card bordered={false} style={{ width: 500 }}>
             <Form
               layout="vertical"
               name="basic"
