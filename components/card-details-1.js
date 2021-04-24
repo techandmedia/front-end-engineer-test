@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col } from "antd";
 import { CardRowDescription } from "./card-row-description";
 
-export function CardLogo() {
+export function CardLogo({ cardNumber }) {
+  const [logo, setLogo] = useState("Master");
+
+  useEffect(() => {
+    if (parseInt(cardNumber.charAt(0)) % 2) {
+      setLogo("Master");
+    } else {
+      setLogo("Visa");
+    }
+  }, [cardNumber]);
+
   return (
     <CardRowDescription>
       <Col span={8}>LOGO 1</Col>
@@ -14,7 +24,7 @@ export function CardLogo() {
             right: "0px",
           }}
         >
-          LOGO 2
+          {logo === "Master" ? "Master Card" : "Visa Card"}
         </div>
       </Col>
     </CardRowDescription>

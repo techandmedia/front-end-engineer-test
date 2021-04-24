@@ -37,7 +37,7 @@ export default function Home() {
       <Row gutter={12}>
         <Col span={12}>
           <div className="credit-card">
-            <CardLogo />
+            <CardLogo cardNumber={cardNumber} />
             <CardNumber cardNumber={cardNumber} />
             <CardHolderName
               cardName={cardName}
@@ -116,7 +116,7 @@ export default function Home() {
                       },
                     ]}
                   >
-                    <Input />
+                    <Input.Password maxLength={3} />
                   </Form.Item>
                 </Col>
               </Row>
