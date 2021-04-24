@@ -3,11 +3,13 @@ import { Form, Card, Input, Row, Col } from "antd";
 import { CardLogo } from "../components/card-details-1";
 import { CardNumber } from "../components/card-details-2";
 import { CardHolderName } from "../components/card-details-3";
+import { createAStringOfNumber, createExpiration } from "../utils/helpers";
 
 export default function Home() {
   const [cardNumber, setCardNumber] = useState("xxxx xxxx xxxx xxxx xxxx");
   const [cardName, setCardName] = useState("xxxxx xxxxx");
   const [cardExpiration, setCardExpiration] = useState("xx/xx");
+
   function onFinishFailed(errorInfo) {
     console.log("Failed:", errorInfo);
   }
@@ -26,39 +28,8 @@ export default function Home() {
     setCardNumber(blockOfNumber);
 
     // Change the expiration date
-  }
-
-  function createAStringOfNumber(newNumber) {
-    const block1 =
-      Math.random(newNumber / 1)
-        .toString(4)
-        .substring(2, 4) +
-      Math.random(newNumber / 2)
-        .toString(4)
-        .substring(2, 4);
-    const block2 =
-      Math.random(newNumber / 3)
-        .toString(4)
-        .substring(2, 4) +
-      Math.random(newNumber / 4)
-        .toString(4)
-        .substring(2, 4);
-    const block3 =
-      Math.random(newNumber / 5)
-        .toString(4)
-        .substring(2, 4) +
-      Math.random(newNumber / 6)
-        .toString(4)
-        .substring(2, 4);
-    const block4 =
-      Math.random(newNumber / 7)
-        .toString(4)
-        .substring(2, 4) +
-      Math.random(newNumber / 8)
-        .toString(4)
-        .substring(2, 4);
-    const final = block1 + " " + block2 + " " + block3 + " " + block4;
-    return final;
+    const exp = createExpiration(newNumber);
+    setCardExpiration(exp);
   }
 
   return (
@@ -88,7 +59,7 @@ export default function Home() {
                 name="name"
                 rules={[{ required: true, message: "Please input your name!" }]}
               >
-                <Input onChange={(e) => onNameChange(e)} />
+                <Input maxLength={11} onChange={(e) => onNameChange(e)} />
               </Form.Item>
 
               <Form.Item
@@ -98,7 +69,16 @@ export default function Home() {
                   { required: true, message: "Please input your card number!" },
                 ]}
               >
-                <Input />
+                <div
+                  style={{
+                    border: "1px solid grey",
+                    padding: 4,
+                    borderRadius: 2,
+                    paddingLeft: 12,
+                  }}
+                >
+                  {cardNumber}
+                </div>
               </Form.Item>
 
               <Row gutter={12}>
@@ -113,7 +93,16 @@ export default function Home() {
                       },
                     ]}
                   >
-                    <Input />
+                    <div
+                      style={{
+                        border: "1px solid grey",
+                        padding: 4,
+                        borderRadius: 2,
+                        paddingLeft: 12,
+                      }}
+                    >
+                      {cardExpiration}
+                    </div>
                   </Form.Item>
                 </Col>
                 <Col span={12}>
